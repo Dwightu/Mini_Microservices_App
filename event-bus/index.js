@@ -10,11 +10,21 @@ app.post('/events', (req, res) => {
     const event = req.body;
 
     //Port 4000:Posts
-    axios.post('http://localhost:4000/events', event)
+    axios.post('http://localhost:4000/events', event).catch((err) => {
+        console.log(err.message);
+    });
     //Port 5000:Comments
-    axios.post('http://localhost:5000/events', event)
-    //Post 6000:Query Service
-    axios.post('http://localhost:4005/events', event)
+    axios.post('http://localhost:5000/events', event).catch((err) => {
+        console.log(err.message);
+    });
+    //Post 4005:Query Service
+    axios.post('http://localhost:4005/events', event).catch((err) => {
+        console.log(err.message);
+    });
+    //Post 4003:Moderation Service
+    axios.post('http://localhost:4003/events', event).catch((err) => {
+        console.log(err.message);
+    });
 
     res.send({ status: 'OK' });
 })
