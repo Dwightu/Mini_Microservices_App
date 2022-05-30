@@ -14,19 +14,20 @@ app.post('/events', (req, res) => {
     events.push(event);
 
     //Port 4000:Posts
-    axios.post('http://localhost:4000/events', event).catch((err) => {
+    axios.post('http://posts-clusterip-srv:4000/events', event).catch((err) => {
         console.log(err.message);
     });
+
     //Port 5000:Comments
-    axios.post('http://localhost:5000/events', event).catch((err) => {
+    axios.post('http://comments-srv:4001/events', event).catch((err) => {
         console.log(err.message);
     });
     //Post 4005:Query Service
-    axios.post('http://localhost:4005/events', event).catch((err) => {
+    axios.post('http://query-srv:4002/events', event).catch((err) => {
         console.log(err.message);
     });
     //Post 4003:Moderation Service
-    axios.post('http://localhost:4003/events', event).catch((err) => {
+    axios.post('http://moderation-srv:4003/events', event).catch((err) => {
         console.log(err.message);
     });
 
@@ -39,6 +40,6 @@ app.get('/events', (req, res) => {
 })
 
 //Port 7000: Event Bus
-app.listen(7000, () => {
-    console.log('Listening on Port 7000')
+app.listen(4005, () => {
+    console.log('Listening on Port 4005')
 })

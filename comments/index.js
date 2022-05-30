@@ -25,7 +25,7 @@ app.post('/posts/:id/comments', async (req, res) => {
     commentByPostId[req.params.id] = comments;
 
 
-    await axios.post('http://localhost:7000/events', {
+    await axios.post('http://event-bus-srv:4005/events', {
         type: 'CommentCreated',
         data: {
             id: commentId,
@@ -50,7 +50,7 @@ app.post('/events', async (req, res) => {
                 return comment.id === id;
             })
         comment.status = status;
-        await axios.post('http://localhost:7000/events', {
+        await axios.post('http://event-bus-srv:4005/events', {
             type: 'CommentUpdated',
             data: {
                 id,
@@ -66,6 +66,6 @@ app.post('/events', async (req, res) => {
 )
 
 
-app.listen(5000, () => {
-    console.log('Listening on port 5000')
+app.listen(4001, () => {
+    console.log('Listening on port 4001')
 })
