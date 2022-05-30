@@ -34,7 +34,7 @@ Event-driven architecture pattern is a distributed asynchronous architecture pat
 - Ingress Controller<br>
  A pod with a set of routing rules to distribute traffic to other services
 ### - Skaffold<br>
- Automates many tasks in a Kubernetes dev environment
+ Automates many tasks in a Kubernetes dev environment. Skaffold handles the workflow for building, pushing and deploying your application, allowing me to focus on what matters most: writing code.
  
 
 ## Local Usage
